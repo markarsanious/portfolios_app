@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head> 
+        <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/bootstrap/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="/bootstrap/css/bootstrap.css">
+        <link rel="stylesheet" href="/bootstrap/css/base.css">
+        <title>Portfolios App</title>
+      
+    </head>
+
+    <body>
+        <div class="container">
+      <div class="header clearfix">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+          <li role="presentation"><a href="/">Home</a></li>
+           <% if (user) { %>    
+            <li role="presentation"><a href="/portfolios/">View All Portfolios</a></li>
+            <li role="presentation"><a href="/portfolios/myportfolio/">My Portfolio</a></li>
+            <li role="presentation"><a href="/users/logout/">Log out</a></li>
+
+          <% } else{ %>  
+            <li role="presentation"><a href="/portfolios/">View All Portfolios</a></li>
+            <li role="presentation"><a href="/users/login/">Login</a></li>
+            <li role="presentation"><a href="/users/register/">Register</a></li>
+            <% } %>
+          </ul>
+        </nav>
+        <h3 class="text-muted">Portfolios App</h3>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-12">
+          <% if(success_msg && success_msg.length !== 0){ %>
+            <div class="alert alert-success"><%= success_msg %></div>
+            <% } %>
+            
+        <% if(error_msg && error_msg.length !== 0){ %>
+            <div class="alert alert-danger"><%= error_msg %></div>
+            <% } %>
+
+          <% if(error && error.length !== 0){ %>
+            <div class="alert alert-danger"><%= error %></div>
+            <% } %>
+          
+          <%- body %>
+          
+        </div>
+      </div>
+
+      <footer class="footer">
+        <p>&copy; 2016 Portfolio App, Inc.</p>
+      </footer>
+
+    </div> <!-- /container -->
+         <script src="/angular/angular.min.js"></script>
+    </body>
+</html>

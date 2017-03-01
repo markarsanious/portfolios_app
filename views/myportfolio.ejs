@@ -1,0 +1,52 @@
+<% if (portfolio) { %>
+<h2 class="page-header text-muted">Your Portfolio Details</h2>
+ <ul class="nav nav-pills pull-right">
+<li role="presentation"><a href="/portfolios/addWork/">Add Work</a></li>
+ </ul>
+       <div class="row">
+      <div class="col-sm-12 col-md-12 col-lg-12">
+       <div class="media">
+       <div class="media-left media-middle">
+       
+       <% if (portfolio.picture) {%>
+       <img class="media-object" src="<%= portfolio.picture %>" width="150" height="150" />
+       <% } %>
+       
+       </div>
+       <div class="media-body">
+       <h2 class="media-heading"><%= portfolio.name %></h2>
+       Description: <%= portfolio.description %>
+        
+        </div>
+        </div>
+
+    <% if (portfolio.screenshot && portfolio.screenshot.length!==0) { %>
+    <h4>Screenshots: </h4>
+    <% for(i=0; i<portfolio.screenshot.length; i++){ %>
+    <span>
+     <img class="media-object" src="<%= portfolio.screenshot[i] %>" width="650" height="350" />
+     </span>
+     <br/>
+    <% }; %>
+    <% } %>
+    
+    <% if (portfolio.url && portfolio.url.length!==0) { %>
+    <h4>Links: </h4>
+    <% for(i=0; i<portfolio.url.length; i++){ %>
+    <h5> <%= portfolio.url[i] %> </h5>
+    <% }; %>
+    <% } %>
+
+      </div>
+       </div>
+<% }else { %>
+    <div align="center">
+    <h1>No portfolios created yet</h1>
+    <br/>
+    <br/>
+    <h4>Press on the below button to create one</h4>
+    <br/>
+    <button style="height:600;width:600" class="btn btn-default"><a href="/portfolios/create" class="btn btn-primary">Create New Portfolio</a></button>
+    </div>
+<% } %>
+

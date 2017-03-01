@@ -1,0 +1,70 @@
+<h1 class="page-header">Summary of Portfolios</h1>
+
+<form method="post" action="/portfolios/">
+<div class="thumbnail">
+<fieldset>
+<legend><h3 class="text-muted">Search:</h3></legend>
+<div class="form-group">
+<label>By Name: </label>
+<input type="search" name="searchname" placeholder="Search portfolios...">
+<label>By Description: </label>
+<input type="search" name="searchdescription" placeholder="Search portfolios...">
+</div>
+<div align="center" >
+<button type="submit" class=" btn btn-primary">Search</button>
+</div>
+<br/>
+</fieldset>
+</form>
+</div>
+<br/>
+<br/>
+
+
+<% if (portfolios && portfolios.length!==0) { %>
+   <% portfolios.forEach(function(portfolio){ %>
+       <div class="row">
+      <div class="col-sm-12 col-md-12 col-lg-12">
+      <div class="thumbnail">
+       <div class="media">
+       <div class="media-left media-middle">
+       
+       <% if (portfolio.picture) {%>
+       <img class="media-object" src="<%= portfolio.picture %>" width="150" height="150" />
+       <% } %>
+       
+       </div>
+       <div class="media-body">
+       <h2 class="media-heading"><%= portfolio.name %></h2>
+       Description: <%= portfolio.description %>
+        
+        </div>
+        </div>
+
+    <% if (portfolio.screenshot && portfolio.screenshot.length!==0) { %>
+    <h4>Screenshots: </h4>
+    <ul class="nav nav-pillss">
+    <% for(i=0; i<portfolio.screenshot.length; i++){ %>
+    <li role="presentation">
+     <img class="media-object" src="<%= portfolio.screenshot[i] %>" width="650" height="350" />
+     </li>
+     <br/>
+    <% }; %>
+    </ul>
+    <% } %>
+    
+    <% if (portfolio.url && portfolio.url.length!==0) { %>
+    <h4>Links: </h4>
+    <% for(i=0; i<portfolio.url.length; i++){ %>
+    <h5> <%= portfolio.url[i] %> </h5>
+    <% }; %>
+    <% } %>
+
+      </div>
+      </div>
+       </div>
+
+<% }); %>
+<% } %>
+
+
